@@ -34,7 +34,8 @@ export async function startHttpServer() {
       const resultsData =   results.map(r => JSON.stringify(r)).join('\n')
       console.log('ResultsData', resultsData.toString())
 
-      response = await callModel(`Mesagem do Usuário: ${message}. \nResultado da execução da tool: ${resultsData}. \nDê uma resposta para a pergunta usando linguagem natural`)
+      //response = await callModel(`Mensagem do Usuário: ${message}. \nResultado da execução da tool: ${resultsData}. \nDê uma resposta para a pergunta usando linguagem natural`)
+      response = await callModel(`FunctionResponseCallID: ${response.functionCalls[0]?.id}\nMensagem do Usuário: ${message}. \nResultado da execução da tool: ${resultsData}. \nDê uma resposta para a pergunta usando linguagem natural`)
 
      
     }
