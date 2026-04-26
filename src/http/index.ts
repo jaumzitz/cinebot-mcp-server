@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
-import express from "express";
+import type { Request, Response, NextFunction } from "express";
+import express from "express"
 import { callModel } from "../llm/callModel.js";
 import { searchMovie } from "../tools/searchMovie.js";
 import type { LLMResponse } from "../types/index.js";
@@ -9,10 +10,23 @@ dotenv.config();
 
 const PORT = process.env.PORT ?? "3000";
 
+
+function apiKeyAuth(req: Request, res: Response, next: NextFunction) {
+  const apiKey = req.headers["authorization"] as string | undefined;
+
+  if (!apiKey || apiKey !== process.env.HTTP_API_KEY) {
+    res.status(401).json({ error: "Não autorizado" });
+    return;
+  }
+
+  next();
+}
+
 export async function startHttpServer() {
   const app = express();
 
   app.use(express.json())
+  app.use(apiKeyAuth)
 
   app.get("/", (_req, res) => {
     res.send("Servidor HTTP rodando");
@@ -23,6 +37,10 @@ export async function startHttpServer() {
 
     const message: string = req.body.content
 
+    // if (!message || message.trim() == '') {
+    //   const noContent = 
+    //   res.send()
+    // }
     let response: LLMResponse = await callModel(message)
 
 
@@ -43,10 +61,6 @@ export async function startHttpServer() {
     res.send(response.text)
 
 
-
-
-
-
   })
 
 
@@ -59,4 +73,3 @@ export async function startHttpServer() {
     console.log(`Servidor HTTP iniciado na porta ${PORT}`);
   });
 }
-0
