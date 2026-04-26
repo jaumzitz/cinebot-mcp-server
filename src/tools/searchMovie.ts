@@ -6,7 +6,7 @@ dotenv.config()
 const searchMovieFunctionDeclaration = {
     name: "search_movie",
     description:
-      "Quando um usuário pedir alguma das informações a seguir sobre um filme: ano de lançamento, diretor, atores, classificação indicativa, autores, prêmios, notas, país de origem, gênero e poster. Se um campo específico não estiver disponível, informe o usuário e complemente com o que souber.",
+      "Quando um usuário pedir alguma das informações a seguir sobre um filme: ano de lançamento, diretor, atores, classificação indicativa, autores, prêmios, notas, país de origem, gênero e poster. Se uma informação específica não estiver disponível, use seus conhecimentos para responder.",
     parameters: {
       type: Type.OBJECT,
       properties: {
