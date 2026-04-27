@@ -19,6 +19,7 @@ A aplicação expõe um endpoint HTTP projetado para receber mensagens. O fluxo 
 * **Google Gemini SDK** (Orquestração e LLM)
 * **OMDb API** (Fonte de dados de filmes)
 * **Model Context Protocol (MCP)**
+* **Render** (Deploy do projeto)
 
 ---
 
