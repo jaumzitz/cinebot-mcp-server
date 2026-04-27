@@ -2,7 +2,6 @@ import dotenv from "dotenv";
 import type { Request, Response, NextFunction } from "express";
 import express from "express"
 import { callModel } from "../llm/callModel.js";
-import { searchMovie } from "../tools/searchMovie.js";
 import type { LLMResponse } from "../types/index.js";
 import { executeTool } from "../llm/executeTool.js";
 
@@ -37,12 +36,7 @@ export async function startHttpServer() {
 
     const message: string = req.body.content
 
-    // if (!message || message.trim() == '') {
-    //   const noContent = 
-    //   res.send()
-    // }
     let response: LLMResponse = await callModel(message)
-
 
     while (response.functionCalls && response.functionCalls.length > 0) {
 
@@ -52,21 +46,13 @@ export async function startHttpServer() {
       const resultsData =   results.map(r => JSON.stringify(r)).join('\n')
       console.log('ResultsData', resultsData.toString())
 
-      //response = await callModel(`Mensagem do Usuário: ${message}. \nResultado da execução da tool: ${resultsData}. \nDê uma resposta para a pergunta usando linguagem natural`)
       response = await callModel(`FunctionResponseCallID: ${response.functionCalls[0]?.id}\nMensagem do Usuário: ${message}. \nResultado da execução da tool: ${resultsData}. \nDê uma resposta para a pergunta usando linguagem natural`)
-
-     
+  
     }
 
     res.send(response.text)
 
 
-  })
-
-
-  app.get('/movie', async (req, res) => {
-    const movieData = await searchMovie(req.body.title, req.body.year)
-    res.send(movieData)
   })
 
   app.listen(PORT, () => {
