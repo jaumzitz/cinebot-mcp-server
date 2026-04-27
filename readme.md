@@ -110,6 +110,15 @@ Esta ferramenta é o coração do CineBot para consultas externas.
 * **Ação:** Realiza uma busca detalhada no OMDb.
 * **Uso:** Invocada automaticamente pelo Gemini quando o contexto da conversa exige fatos verificados sobre produções cinematográficas.
 
+---
+
+## Endpoint de API (/messages)
+
+Essa rota deve user usada para enviar mensagens à LLM.
+* **Endpoint:** /messages
+* **Método:** POST
+* **Corpo:** { "content": "INPUT_DO_USUARIO" }
+* **Authorization:** <sua chave de autorização configurada no .env>
 
 ---
 *Desenvolvido por [jaumzitz](https://github.com/jaumzitz)*
