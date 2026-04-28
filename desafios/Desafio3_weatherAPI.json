@@ -1,0 +1,64 @@
+{
+  "info": {
+    "_postman_id": "f1121d8e-440d-43fe-bd7e-5bfb25e4a4ce",
+    "name": "WeatherAPI (Stormglass)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "26852065"
+  },
+  "item": [
+    {
+      "name": "https://api.stormglass.io/v2/weather/point",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "1da3739e-4194-11f1-8e81-0242ac120004-1da3740c-4194-11f1-8e81-0242ac120004",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "Authorization",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.stormglass.io/v2/weather/point?lat=-26.9069133&lng=-48.6795077&params=airTemperature",
+          "protocol": "https",
+          "host": [
+            "api",
+            "stormglass",
+            "io"
+          ],
+          "path": [
+            "v2",
+            "weather",
+            "point"
+          ],
+          "query": [
+            {
+              "key": "lat",
+              "value": "-26.9069133",
+              "type": "text"
+            },
+            {
+              "key": "lng",
+              "value": "-48.6795077",
+              "type": "text"
+            },
+            {
+              "key": "params",
+              "value": "airTemperature",
+              "type": "text"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
